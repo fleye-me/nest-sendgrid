@@ -1,2 +1,2 @@
-export * from './nest-sendgrid.module';
-export * from './nest-sendgrid.service';
+export * from './sendgrid.module';
+export * from './sendgrid.service';

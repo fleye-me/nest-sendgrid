@@ -1,0 +1,2 @@
+export declare const SENDGRID_CONFIG = "SENDGRID_CONFIG";
+export declare const SENDGRID_MODULE_OPTIONS = "SENDGRID_MODULE_OPTIONS";
