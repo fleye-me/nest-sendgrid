@@ -15,5 +15,7 @@
     "@nestjs/core": "^6.0.0",
     "typescript": "^3.6.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@sendgrid/mail": "^6.4.0"
+  }
 }
