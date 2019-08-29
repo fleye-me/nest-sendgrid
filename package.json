@@ -1,8 +1,16 @@
 {
   "name": "nest-sendgrid",
   "version": "0.0.1",
+  "scripts": {
+    "build": "tsc -p tsconfig.lib.json"
+  },
   "peerDependencies": {
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^6.0.0",
+    "@nestjs/core": "^6.0.0",
+    "typescript": "^3.6.2"
   }
 }
