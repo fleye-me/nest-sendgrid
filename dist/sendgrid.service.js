@@ -24,12 +24,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const sendgrid_constants_1 = require("./sendgrid.constants");
 const Sendgrid = require("@sendgrid/mail");
+const Mustache = require("mustache");
 let SendGridService = class SendGridService {
     constructor(sendGridConfig) {
         this.sendGridConfig = sendGridConfig;
         Sendgrid.setApiKey(this.sendGridConfig.sendgridApiKey);
-        console.log("@@@@@@@@@@@@@@@");
-        console.log(this.sendGridConfig);
     }
     sendMail(to, subject, html) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -39,6 +38,28 @@ let SendGridService = class SendGridService {
                     from: this.sendGridConfig.sendgridEmailFrom,
                     subject,
                     html,
+                });
+            }
+            catch (error) {
+                console.log(error);
+            }
+        });
+    }
+    renderAndSendMail(to, subject, templatePath, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var view = {
+                title: "Joe",
+                calc: function () {
+                    return 2 + 4;
+                }
+            };
+            const output = Mustache.render("{{title}} spends {{calc}}", view);
+            console.log(output);
+            try {
+                return yield Sendgrid.send({
+                    to,
+                    from: this.sendGridConfig.sendgridEmailFrom,
+                    subject,
                 });
             }
             catch (error) {

@@ -16,6 +16,7 @@
     "typescript": "^3.6.2"
   },
   "dependencies": {
-    "@sendgrid/mail": "^6.4.0"
+    "@sendgrid/mail": "^6.4.0",
+    "mustache": "^3.0.3"
   }
 }
