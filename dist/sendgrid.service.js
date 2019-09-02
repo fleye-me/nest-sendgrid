@@ -29,35 +29,36 @@ const fs = require("fs");
 let SendGridService = class SendGridService {
     constructor(sendGridConfig) {
         this.sendGridConfig = sendGridConfig;
-        console.log('proccess: ', process.cwd());
-        console.log('dirname: ', __dirname);
         Sendgrid.setApiKey(this.sendGridConfig.sendgridApiKey);
     }
     sendMail(to, subject, html) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                return yield Sendgrid.send({
-                    to,
-                    from: this.sendGridConfig.sendgridEmailFrom,
-                    subject,
-                    html,
-                });
-            }
-            catch (error) {
-                console.log(error);
-            }
+            return yield this.send(to, subject, html);
         });
     }
     renderAndSendMail(to, subject, templatePath, data) {
         return __awaiter(this, void 0, void 0, function* () {
             const template = fs.readFileSync(templatePath, 'utf8');
             const output = Mustache.render(template, data);
+            return yield this.send(to, subject, output);
+        });
+    }
+    send(to, subject, html) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.sendGridConfig.devOptions) {
+                if (this.sendGridConfig.devOptions.disableSend) {
+                    return;
+                }
+                if (this.sendGridConfig.devOptions.defaultDestinyAddress) {
+                    to = this.sendGridConfig.devOptions.defaultDestinyAddress;
+                }
+            }
             try {
                 return yield Sendgrid.send({
                     to,
                     from: this.sendGridConfig.sendgridEmailFrom,
                     subject,
-                    html: output,
+                    html,
                 });
             }
             catch (error) {
