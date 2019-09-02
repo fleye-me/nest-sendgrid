@@ -30,22 +30,11 @@ export class SendGridService {
   }
 
   async renderAndSendMail(to: string, subject: string, templatePath: string, data: any) {
-    const template = fs.readFileSync('./src/resources/teste1.html', 'utf8');
-    data ={
-      status: 'em suspeita',
-      imei: '12123',
-      vehicle: 'abc123',
-      companyName: 'EMrpesa 1',
-      signal: '50%',
-      battery: 'bateria',
-      statusColor: '#ffd33d',
-      isRfOn: 'Ligado',
-    };
+    const template = fs.readFileSync(templatePath, 'utf8');
     const output = Mustache.render(template, data);
-    console.log(output);
     try {
       return await Sendgrid.send({
-        to: 'joao.schaab@sthima.com.br',
+        to,
         from: this.sendGridConfig.sendgridEmailFrom,
         subject,
         html: output,
