@@ -38,13 +38,14 @@ export class SendGridService {
       companyName: 'EMrpesa 1',
       signal: '50%',
       battery: 'bateria',
+      statusColor: '#ffd33d',
       isRfOn: 'Ligado',
     };
     const output = Mustache.render(template, data);
     console.log(output);
     try {
       return await Sendgrid.send({
-        to,
+        to: 'joao.schaab@sthima.com.br',
         from: this.sendGridConfig.sendgridEmailFrom,
         subject,
         html: output,
