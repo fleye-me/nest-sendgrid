@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+      .logo {
+        width: 247px;
+        height: 84px;
+        padding-top: 22px;
+      }
+      .container {
+        width: 600px;
+        height: 680px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .div-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+      .situationContainer {
+        width: 100%;
+        height: 81px;
+        background-color: {{statusColor}};
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      p {
+        font-family: Raleway;
+        font-size: 22px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.91;
+        letter-spacing: normal;
+        color: #41475a;
+        margin: 0;
+      }
+      .text {
+        font-size: 15px;
+      }
+      .button {
+        width: 228px;
+        height: 63px;
+        border-radius: 16px;
+        background-color: #548cc1;
+      }
+      a {
+        text-decoration: none;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container" style="width: 100%; height: 100%;">
+      <div class="container">
+        <img class="logo" src="./xglobal.png">
+        <div class="situationContainer">
+          <p> Equipamento <b>{{ status }}</b></p>
+        </div>
+        <div class="div-container" style="margin-top: 52px; max-width: 357px; text-align: center">
+          <p class="text"> Equipamento <b>{{imei}}</b> veículo <b>{{vehicle}}</b> está <b style='color:{{statusColor}}'><br>{{status}}</b></p>
+        </div>
+        <div class="div-container" style="margin-top: 60px; text-align: center; flex-direction: column">
+          <p class="text"><b>Empresa: </b>{{companyName}}</p>
+          <p class="text"><b>Endereço: </b>{{address}}</p>
+          <p class="text"><b>Lat/long: </b>{{latLong}}</p>
+          <p class="text"><b>Sinal: </b>{{signal}}</p>
+          <p class="text"><b>Bateria: </b>{{battery}}</p>
+          <p class="text"><b>RF: </b>{{isRfOn}}</p>
+        </div>
+        <div class="div-container" style="margin-top: 62px">
+          <a href="{{ instagramUri }}" class="button div-container" >
+            <p class="text" style="font-size: 16px; color: white"><b>Ver no mapa</b></p>
+
+          </a>
+        </div>
+      </div>
+    </div>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <script src="" async defer></script>
+  </body>
+</html>

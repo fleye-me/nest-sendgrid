@@ -3,6 +3,7 @@ import { SENDGRID_CONFIG } from './sendgrid.constants';
 import { SendGridConfig } from './interfaces/email.interface';
 import * as Sendgrid from '@sendgrid/mail';
 import * as Mustache from 'mustache';
+import * as fs from 'fs';
 
 
 @Injectable()
@@ -27,19 +28,24 @@ export class SendGridService {
   }
 
   async renderAndSendMail(to: string, subject: string, templatePath: string, data: any) {
-    var view = {
-      title: "Joe",
-      calc: function () {
-        return 2 + 4;
-      }
+    const template = fs.readFileSync('./situation-email.html', 'utf8');
+    data ={
+      status: 'em suspeita',
+      imei: '12123',
+      vehicle: 'abc123',
+      companyName: 'EMrpesa 1',
+      signal: '50%',
+      battery: 'bateria',
+      isRfOn: 'Ligado',
     };
-    const output = Mustache.render("{{title}} spends {{calc}}", view);
+    const output = Mustache.render(template, data);
     console.log(output);
     try {
       return await Sendgrid.send({
         to,
         from: this.sendGridConfig.sendgridEmailFrom,
         subject,
+        html: output,
       });
     } catch (error) {
       console.log(error);
