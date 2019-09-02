@@ -50,7 +50,7 @@ let SendGridService = class SendGridService {
     }
     renderAndSendMail(to, subject, templatePath, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const template = fs.readFileSync('./situation-email.html', 'utf8');
+            const template = fs.readFileSync('./src/resources/situation-email.html', 'utf8');
             data = {
                 status: 'em suspeita',
                 imei: '12123',
