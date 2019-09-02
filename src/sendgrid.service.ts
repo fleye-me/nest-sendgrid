@@ -12,6 +12,7 @@ export class SendGridService {
     @Inject(SENDGRID_CONFIG) private readonly sendGridConfig: SendGridConfig,
   ) {
     console.log('proccess: ', process.cwd());
+    console.log('dirname: ', __dirname);
     Sendgrid.setApiKey(this.sendGridConfig.sendgridApiKey);
   }
 

@@ -29,6 +29,7 @@ const fs = require("fs");
 let SendGridService = class SendGridService {
     constructor(sendGridConfig) {
         this.sendGridConfig = sendGridConfig;
+        console.log('proccess: ', process.cwd());
         Sendgrid.setApiKey(this.sendGridConfig.sendgridApiKey);
     }
     sendMail(to, subject, html) {
