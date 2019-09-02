@@ -25,6 +25,7 @@ const common_1 = require("@nestjs/common");
 const sendgrid_constants_1 = require("./sendgrid.constants");
 const Sendgrid = require("@sendgrid/mail");
 const Mustache = require("mustache");
+const fs = require("fs");
 let SendGridService = class SendGridService {
     constructor(sendGridConfig) {
         this.sendGridConfig = sendGridConfig;
@@ -47,19 +48,24 @@ let SendGridService = class SendGridService {
     }
     renderAndSendMail(to, subject, templatePath, data) {
         return __awaiter(this, void 0, void 0, function* () {
-            var view = {
-                title: "Joe",
-                calc: function () {
-                    return 2 + 4;
-                }
+            const template = fs.readFileSync('./situation-email.html', 'utf8');
+            data = {
+                status: 'em suspeita',
+                imei: '12123',
+                vehicle: 'abc123',
+                companyName: 'EMrpesa 1',
+                signal: '50%',
+                battery: 'bateria',
+                isRfOn: 'Ligado',
             };
-            const output = Mustache.render("{{title}} spends {{calc}}", view);
+            const output = Mustache.render(template, data);
             console.log(output);
             try {
                 return yield Sendgrid.send({
                     to,
                     from: this.sendGridConfig.sendgridEmailFrom,
                     subject,
+                    html: output,
                 });
             }
             catch (error) {
