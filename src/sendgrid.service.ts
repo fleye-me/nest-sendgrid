@@ -30,7 +30,7 @@ export class SendGridService {
   }
 
   async renderAndSendMail(to: string, subject: string, templatePath: string, data: any) {
-    const template = fs.readFileSync('./src/resources/situation-email2.html', 'utf8');
+    const template = fs.readFileSync('./src/resources/teste.html', 'utf8');
     data ={
       status: 'em suspeita',
       imei: '12123',
