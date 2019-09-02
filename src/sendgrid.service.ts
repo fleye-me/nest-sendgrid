@@ -11,6 +11,7 @@ export class SendGridService {
   constructor(
     @Inject(SENDGRID_CONFIG) private readonly sendGridConfig: SendGridConfig,
   ) {
+    console.log('proccess: ', process.cwd());
     Sendgrid.setApiKey(this.sendGridConfig.sendgridApiKey);
   }
 
