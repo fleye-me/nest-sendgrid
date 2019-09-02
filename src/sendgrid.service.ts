@@ -11,12 +11,28 @@ export class SendGridService {
   constructor(
     @Inject(SENDGRID_CONFIG) private readonly sendGridConfig: SendGridConfig,
   ) {
-    console.log('proccess: ', process.cwd());
-    console.log('dirname: ', __dirname);
     Sendgrid.setApiKey(this.sendGridConfig.sendgridApiKey);
   }
 
   async sendMail(to: string, subject: string, html: string) {
+    return await this.send(to, subject, html);
+  }
+
+  async renderAndSendMail(to: string, subject: string, templatePath: string, data: any) {
+    const template = fs.readFileSync(templatePath, 'utf8');
+    const output = Mustache.render(template, data);
+    return await this.send(to, subject, output);
+  }
+
+  private async send(to: string, subject: string, html: string) {
+    if(this.sendGridConfig.devOptions) {
+      if (this.sendGridConfig.devOptions.disableSend) {
+        return;
+      }
+      if(this.sendGridConfig.devOptions.defaultDestinyAddress) {
+        to = this.sendGridConfig.devOptions.defaultDestinyAddress;
+      }
+    }
     try {
       return await Sendgrid.send({
         to,
@@ -29,18 +45,4 @@ export class SendGridService {
     }
   }
 
-  async renderAndSendMail(to: string, subject: string, templatePath: string, data: any) {
-    const template = fs.readFileSync(templatePath, 'utf8');
-    const output = Mustache.render(template, data);
-    try {
-      return await Sendgrid.send({
-        to,
-        from: this.sendGridConfig.sendgridEmailFrom,
-        subject,
-        html: output,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
 }
