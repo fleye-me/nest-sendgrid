@@ -3,7 +3,7 @@ import { SENDGRID_CONFIG } from './sendgrid.constants';
 import { SendGridConfig } from './interfaces/email.interface';
 import * as Sendgrid from '@sendgrid/mail';
 import * as Mustache from 'mustache';
-import * as fs from 'fs';
+import { readFileSync } from 'fs';
 
 
 @Injectable()
@@ -19,7 +19,7 @@ export class SendGridService {
   }
 
   async renderAndSendMail(to: string, subject: string, templatePath: string, data: any) {
-    const template = fs.readFileSync(templatePath, 'utf8');
+    const template = readFileSync(templatePath, 'utf8');
     const output = Mustache.render(template, data);
     return await this.send(to, subject, output);
   }

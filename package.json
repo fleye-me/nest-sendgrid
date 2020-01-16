@@ -10,13 +10,15 @@
     "@nestjs/core": "^6.0.0"
   },
   "devDependencies": {
-    "@sendgrid/mail": "^6.4.0",
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
+    "@sendgrid/mail": "^6.4.0",
+    "@types/node": "^13.1.7",
     "typescript": "^3.6.2"
   },
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
-    "mustache": "^3.0.3"
+    "mustache": "^3.0.3",
+    "ts-node": "^8.6.2"
   }
 }
