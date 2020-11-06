@@ -5,3 +5,5 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./sendgrid.module"));
 __export(require("./sendgrid.service"));
+var attachment_1 = require("./attachment");
+exports.Attachment = attachment_1.Attachment;
