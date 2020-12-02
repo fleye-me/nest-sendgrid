@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var SendGridModule_1;
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SendGridModule = void 0;
 const common_1 = require("@nestjs/common");
 const sendgrid_service_1 = require("./sendgrid.service");
 const sendgrid_constants_1 = require("./sendgrid.constants");

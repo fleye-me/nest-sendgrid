@@ -25,7 +25,7 @@ export class SendGridService {
     return await this.send(to, subject, output, attachments);
   }
 
-  private async send(to: string, subject: string, html: string, attachments?: Attachment[]) {
+  private async send(to: string, subject: string, html: string, attachments: Attachment[] = []) {
     if(this.sendGridConfig.devOptions) {
       if (this.sendGridConfig.devOptions.disableSend) {
         return;

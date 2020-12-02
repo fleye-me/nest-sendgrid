@@ -21,6 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SendGridService = void 0;
 const common_1 = require("@nestjs/common");
 const sendgrid_constants_1 = require("./sendgrid.constants");
 const Sendgrid = require("@sendgrid/mail");
@@ -43,7 +44,7 @@ let SendGridService = class SendGridService {
             return yield this.send(to, subject, output, attachments);
         });
     }
-    send(to, subject, html, attachments) {
+    send(to, subject, html, attachments = []) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.sendGridConfig.devOptions) {
                 if (this.sendGridConfig.devOptions.disableSend) {
