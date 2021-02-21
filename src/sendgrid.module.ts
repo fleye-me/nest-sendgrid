@@ -1,8 +1,8 @@
-import { Module, DynamicModule, Provider } from '@nestjs/common';
-import { SendGridService } from './sendgrid.service';
-import { SendGridConfig } from './interfaces/email.interface';
-import { SendGridModuleAsyncOptions } from './interfaces/async-options.interface';
-import { SENDGRID_CONFIG, SENDGRID_MODULE_OPTIONS } from './sendgrid.constants';
+import { Module, DynamicModule, Provider } from "@nestjs/common";
+import { SendGridService } from "./sendgrid.service";
+import { SendGridConfig } from "./interfaces/email.interface";
+import { SendGridModuleAsyncOptions } from "./interfaces/async-options.interface";
+import { SENDGRID_CONFIG, SENDGRID_MODULE_OPTIONS } from "./sendgrid.constants";
 
 @Module({
   providers: [SendGridService],
@@ -38,16 +38,16 @@ export class SendGridModule {
   }
 
   private static createAsyncProviders(
-    options: SendGridModuleAsyncOptions,
+    options: SendGridModuleAsyncOptions
   ): Provider[] {
     if (options.useFactory) {
       return [this.createAsyncOptionsProvider(options)];
     }
-    return [ ];
+    return [];
   }
 
   private static createAsyncOptionsProvider(
-    options: SendGridModuleAsyncOptions,
+    options: SendGridModuleAsyncOptions
   ): Provider {
     return {
       provide: SENDGRID_MODULE_OPTIONS,

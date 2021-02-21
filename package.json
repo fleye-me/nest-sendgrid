@@ -1,24 +1,46 @@
 {
   "name": "nest-sendgrid",
   "version": "1.0.1",
+  "description": "Lib para envios de emails com sendgrid",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sthima/sigep.git"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.lib.json"
+    "start": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules src/index.ts",
+    "build": "tsc -p tsconfig.lib.json",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn lint",
+    "lint": "eslint src/*",
+    "preversion": "yarn lint",
+    "version": "yarn format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "peerDependencies": {
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0"
   },
+  "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
+    "mustache": "^3.0.3"
+  },
   "devDependencies": {
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
     "@sendgrid/mail": "^6.4.0",
+    "@types/mustache": "^4.1.1",
     "@types/node": "^13.1.7",
+    "husky": "^5.0.9",
+    "ts-node-dev": "^1.1.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.6.2"
-  },
-  "dependencies": {
-    "@sendgrid/mail": "^6.4.0",
-    "mustache": "^3.0.3",
-    "ts-node": "^8.6.2"
   }
 }
