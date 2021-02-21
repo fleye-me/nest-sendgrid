@@ -4,6 +4,7 @@
   "description": "Lib para envios de emails com sendgrid",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sthima/sigep.git"
@@ -38,7 +39,13 @@
     "@sendgrid/mail": "^6.4.0",
     "@types/mustache": "^4.1.1",
     "@types/node": "^13.1.7",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
     "husky": "^5.0.9",
+    "prettier": "^2.2.1",
     "ts-node-dev": "^1.1.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.6.2"

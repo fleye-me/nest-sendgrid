@@ -1,15 +1,15 @@
-import { Injectable, Inject } from "@nestjs/common";
-import { SENDGRID_CONFIG } from "./sendgrid.constants";
-import { SendGridConfig } from "./interfaces/email.interface";
-import * as Sendgrid from "@sendgrid/mail";
-import * as Mustache from "mustache";
-import { readFileSync } from "fs";
-import { Attachment } from "./attachment";
+import { Injectable, Inject } from '@nestjs/common';
+import { SENDGRID_CONFIG } from './sendgrid.constants';
+import { SendGridConfig } from './interfaces/email.interface';
+import * as Sendgrid from '@sendgrid/mail';
+import * as Mustache from 'mustache';
+import { readFileSync } from 'fs';
+import { Attachment } from './attachment';
 
 @Injectable()
 export class SendGridService {
   constructor(
-    @Inject(SENDGRID_CONFIG) private readonly sendGridConfig: SendGridConfig
+    @Inject(SENDGRID_CONFIG) private readonly sendGridConfig: SendGridConfig,
   ) {
     Sendgrid.setApiKey(this.sendGridConfig.sendgridApiKey);
   }
@@ -18,7 +18,7 @@ export class SendGridService {
     to: string,
     subject: string,
     html: string,
-    attachments?: Attachment[]
+    attachments?: Attachment[],
   ) {
     return await this.send(to, subject, html, attachments);
   }
@@ -28,9 +28,9 @@ export class SendGridService {
     subject: string,
     templatePath: string,
     data: any,
-    attachments?: Attachment[]
+    attachments?: Attachment[],
   ) {
-    const template = readFileSync(templatePath, "utf8");
+    const template = readFileSync(templatePath, 'utf8');
     const output = Mustache.render(template, data);
     return await this.send(to, subject, output, attachments);
   }
@@ -39,7 +39,7 @@ export class SendGridService {
     to: string,
     subject: string,
     html: string,
-    attachments: Attachment[] = []
+    attachments: Attachment[] = [],
   ) {
     if (this.sendGridConfig.devOptions) {
       if (this.sendGridConfig.devOptions.disableSend) {
@@ -55,7 +55,7 @@ export class SendGridService {
         from: this.sendGridConfig.sendgridEmailFrom,
         subject,
         html,
-        attachments: attachments.map((a) => a.toObject()),
+        attachments: attachments.map(a => a.toObject()),
       });
     } catch (error) {
       return new Error(error);

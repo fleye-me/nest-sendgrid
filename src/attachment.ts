@@ -22,7 +22,7 @@ export class Attachment {
     return {
       content: buffer.toString('base64'),
       type: this.mimeType,
-      filename: this.filename
+      filename: this.filename,
     };
-  }
+  };
 }
