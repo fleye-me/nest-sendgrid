@@ -32,19 +32,19 @@ let SendGridService = class SendGridService {
         this.sendGridConfig = sendGridConfig;
         Sendgrid.setApiKey(this.sendGridConfig.sendgridApiKey);
     }
-    sendMail(to, subject, html, attachments) {
+    sendMail(to, subject, html, cc, attachments) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.send(to, subject, html, attachments);
+            return yield this.send(to, subject, html, cc, attachments);
         });
     }
-    renderAndSendMail(to, subject, templatePath, data, attachments) {
+    renderAndSendMail(to, subject, templatePath, data, cc, attachments) {
         return __awaiter(this, void 0, void 0, function* () {
-            const template = fs_1.readFileSync(templatePath, 'utf8');
+            const template = fs_1.readFileSync(templatePath, "utf8");
             const output = Mustache.render(template, data);
-            return yield this.send(to, subject, output, attachments);
+            return yield this.send(to, subject, output, cc, attachments);
         });
     }
-    send(to, subject, html, attachments = []) {
+    send(to, subject, html, cc, attachments = []) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.sendGridConfig.devOptions) {
                 if (this.sendGridConfig.devOptions.disableSend) {
@@ -60,7 +60,8 @@ let SendGridService = class SendGridService {
                     from: this.sendGridConfig.sendgridEmailFrom,
                     subject,
                     html,
-                    attachments: attachments.map(a => a.toObject())
+                    cc,
+                    attachments: attachments.map((a) => a.toObject()),
                 });
             }
             catch (error) {
