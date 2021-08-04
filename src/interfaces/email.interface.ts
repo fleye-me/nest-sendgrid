@@ -1,8 +1,8 @@
-export interface SendGridConfig{
+export interface SendGridConfig {
   readonly sendgridApiKey: string;
   readonly sendgridEmailFrom: string;
   readonly devOptions?: {
-    disableSend: boolean,
-    defaultDestinyAddress: string,
+    disableSend: boolean;
+    defaultDestinyAddress: string;
   };
 }
