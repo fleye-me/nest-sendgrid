@@ -7,11 +7,11 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^6.0.0",
-    "@nestjs/core": "^6.0.0"
+    "@nestjs/core": "^9.0.5"
   },
   "devDependencies": {
     "@nestjs/common": "^6.0.0",
-    "@nestjs/core": "^6.0.0",
+    "@nestjs/core": "^9.0.5",
     "@sendgrid/mail": "^6.4.0",
     "@types/node": "^13.1.7",
     "typescript": "^3.6.2"
